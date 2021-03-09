@@ -1,4 +1,4 @@
-# Sudoku-Autonomo / Autonomous Sudoku Solver
+# Sudoku Autonomo / Autonomous Sudoku Solver
 
 -Solver di Sudoku scritto in Processing 3, per mettere in pratica alcuni concetti di intelligenza artificiale. Riscrittura di un vecchio progetto privato.
 
