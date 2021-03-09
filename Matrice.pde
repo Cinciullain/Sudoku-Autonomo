@@ -138,11 +138,12 @@ class Matrice {
 //-------------- Restituisce il dot product tra la matrice e quella parametro -------
   Matrice dot(Matrice parametro) {
     Matrice risultato = new Matrice(righe, parametro.colonne);
-   
+    float somma = 0; //Messa dichiarazione qua al posto di riga 146
+    
     if (colonne == parametro.righe) {
       for (int i = 0; i < righe; i++) {
         for (int j = 0; j < parametro.colonne; j++) {
-          float somma = 0;
+          somma = 0;
           for (int k = 0; k < colonne; k++) {
             somma+= matrice[i][k]*parametro.matrice[k][j];
           }
