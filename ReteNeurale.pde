@@ -39,7 +39,32 @@ class ReteNeurale {
     weightsNascostiOutput.muta(rateoMutazione);
   }
   
-//TODO: int outputReteNeurale(float[] arrayInput){}
+//-------- Calcola i valori di output ----
+  float[] outputReteNeurale(float[] arrayInput) {
+    //Converte l'array in matrice
+    Matrice primoLayer = weightsNascostiOutput.matriceSingolaColonnaDaArray(arrayInput);
+    //Aggiunge bias 
+    Matrice primoLayerBias = primoLayer.aggiungiBias();
+    //Applica i weights del primo layer agli input (Passa dal primo layer al secondo) 
+    Matrice secondoLayer = weightsInputNascosti.dot(primoLayerBias);
+    //Applica la funzione sigmoidea
+    Matrice secondoLayerSigmoidea = secondoLayer.applicaSigmoidea();
+    //Aggiunge il bias
+    Matrice secondoLayerBias = secondoLayerSigmoidea.aggiungiBias();
+
+    //Stessi passaggi per il secondo strato
+    Matrice terzoLayer = weightsNascostiNascosti.dot(secondoLayerBias);
+    Matrice terzoLayerSigmoidea = terzoLayer.applicaSigmoidea();
+    Matrice terzoLayerBias = terzoLayerSigmoidea.aggiungiBias();
+
+    //Applica i pesi del terzo strato
+    Matrice output = weightsNascostiOutput.dot(terzoLayerBias);
+    //Attiva il risultato finale
+    Matrice outputSigmoidea = output.applicaSigmoidea();
+
+    //Converte in array e restituisce
+    return outputSigmoidea.arrayDaMatrice();
+  }
 
 //-------------- Funzione di crossover dell'algoritmo genetico -------
   ReteNeurale crossover(ReteNeurale partner) {
@@ -52,11 +77,11 @@ class ReteNeurale {
   }
   
 //-------------- Restituisce il clone della rete neurale -------
-  ReteNeurale clona() {
+  ReteNeurale clonaRN() {
     ReteNeurale clone = new ReteNeurale(neuroniInput, neuroniNascosti, neuroniOutput); 
-    clone.weightsInputNascosti = weightsInputNascosti.clona();
-    clone.weightsNascostiNascosti = weightsNascostiNascosti.clona();
-    clone.weightsNascostiOutput = weightsNascostiOutput.clona();
+    clone.weightsInputNascosti = weightsInputNascosti.clonaMatrice();
+    clone.weightsNascostiNascosti = weightsNascostiNascosti.clonaMatrice();
+    clone.weightsNascostiOutput = weightsNascostiOutput.clonaMatrice();
     return clone;
   }  
   
