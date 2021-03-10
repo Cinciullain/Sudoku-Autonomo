@@ -18,7 +18,7 @@ class Matrice {
     righe = m[0].length;
   }
   
-//-------------- Setta la Matrice con int randomici tra -1 e 1 (Server per i weight della rete neurale) -------
+//-------------- Imposta la matrice con int randomici tra -1 e 1 (Server per i pesi della rete neurale) -------
   void weightRandomizer() {
     for (int i = 0; i < righe; i++) {
       for (int j = 0; j < colonne; j++) {
@@ -40,18 +40,17 @@ class Matrice {
   void matriceDaArray(float[] array) { 
     for (int i = 0; i < righe; i++) {
       for (int j = 0; j < colonne; j++) {
-        matrice[i][j] = array[j+i*colonne];
+        matrice[i][j] = array[j + i * colonne];
       }
     }
   }
-  
     
 //-------------- Trasforma l'oggetto in array -------
   float[] arrayDaMatrice() {
-    float[] nuovoArray = new float[righe*colonne];
+    float[] nuovoArray = new float[righe * colonne];
     for (int i = 0; i < righe; i++) {
       for (int j = 0; j < colonne; j++) {
-        nuovoArray[j+i*colonne] = matrice[i][j];
+        nuovoArray[j + i * colonne] = matrice[i][j];
       }
     }
     return nuovoArray;
@@ -59,12 +58,12 @@ class Matrice {
   
 //-------------- Crea un array col bias da utilizzare nella rete neurale -------
   Matrice aggiungiBias() {
-    Matrice n = new Matrice(righe+1, 1);
+    Matrice tmp = new Matrice((righe + 1), 1);
     for (int i = 0; i < righe; i++) {
-      n.matrice[i][0] = matrice[i][0];
+      tmp.matrice[i][0] = matrice[i][0];
     }
-    n.matrice[righe][0] = 1;
-    return n;
+    tmp.matrice[righe][0] = 1;
+    return tmp;
   }
   
 //-------------- Funzione Sigmoidea -------
@@ -93,10 +92,10 @@ class Matrice {
           matrice[i][j] += randomGaussian()/5; //Aggiunge un valore random (randomGaussian() perché genera un numero senza floating point, che può essere negativo). Viene diviso per 5 per evitare un numero troppogrande
           
           //Imposta il limite tra 1 e -1 nel caso siano capitati numeri troppo grandi
-          if (matrice[i][j]>1) 
+          if (matrice[i][j] > 1) 
             matrice[i][j] = 1;
           
-          if (matrice[i][j] <-1) 
+          if (matrice[i][j] < -1) 
             matrice[i][j] = -1;  
         }
       }
@@ -125,10 +124,10 @@ class Matrice {
   }
   
 //-------------- Restituisce un clone della matrice -------
-  Matrice clona() { 
+  Matrice clonaMatrice() { 
     Matrice clone = new  Matrice(righe, colonne);
-    for (int i = 0; i<righe; i++) {
-      for (int j = 0; j<colonne; j++) {
+    for (int i = 0; i < righe; i++) {
+      for (int j = 0; j < colonne; j++) {
         clone.matrice[i][j] = matrice[i][j];
       }
     }
@@ -145,7 +144,7 @@ class Matrice {
         for (int j = 0; j < parametro.colonne; j++) {
           somma = 0;
           for (int k = 0; k < colonne; k++) {
-            somma+= matrice[i][k]*parametro.matrice[k][j];
+            somma+= matrice[i][k] * parametro.matrice[k][j];
           }
           risultato.matrice[i][j] = somma;
         }
