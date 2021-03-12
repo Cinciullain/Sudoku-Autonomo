@@ -7,5 +7,5 @@
 
 # Sources:
 
-* - * https://processing.org/reference/
-* - * https://natureofcode.com/
+* https://processing.org/reference/
+* https://natureofcode.com/
