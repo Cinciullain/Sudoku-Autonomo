@@ -8,4 +8,9 @@
 # Sources:
 
 * https://processing.org/reference/
-* https://natureofcode.com/
+* https://natureofcode.com/  (You can download it for free)
+
+
+# Why Processing 3:
+
+#### It is a language I recently discovered, and I think it is really easy and simple to use. It is also open-source
