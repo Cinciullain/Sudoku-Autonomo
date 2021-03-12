@@ -8,7 +8,7 @@
 # Sources:
 
 * https://processing.org/reference/
-* https://natureofcode.com/  (You can download it for free)
+* https://natureofcode.com/  (You can download the book for free)
 
 
 # Why Processing 3:
