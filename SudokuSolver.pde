@@ -15,14 +15,14 @@ boolean mostraMiglioriSudoku = false; //[True]: Mostra la partita di sudoku tra 
 boolean trainingMiglioriSudoku = false; //[True]: Fase di training delle 5 reti neurali migliori; [False]:Fase normale
 
 //-------------- Setup Finestra -------
-void setup() { 
+void setup(){ 
   frameRate(frameRate); 
   size(800, 400); //Dimensione finestra
   //TODO menu e campo da gioco
 }
 
 //-------------- Settings Finestra -------
-void draw() {
+void draw(){
   background(40); //Colore sfondo
   mostraDati();
   
@@ -30,8 +30,8 @@ void draw() {
 }
 
 //-------------- Gestione comandi da tastiera -------
-void keyPressed() {
-  switch(key) {
+void keyPressed(){
+  switch(key){
   case ' ': //Disattiva/Attiva "Mostra tutti"
     mostraTutti = !mostraTutti;
     break;
@@ -40,7 +40,7 @@ void keyPressed() {
     frameRate(frameRate);
     break;
   case '-': //Diminuisce fps 
-    if (frameRate > 10) {
+    if (frameRate > 10){
       frameRate -= 10;
       frameRate(frameRate);
     }
@@ -86,7 +86,7 @@ void keyPressed() {
   case 'l': //Allena le 5 reti neurali migliori
     trainingMiglioriSudoku = !trainingMiglioriSudoku;
     //Carica le 5 reti neurali migliori dal file e inizializza la sessione
-    if (trainingMiglioriSudoku == true) { 
+    if (trainingMiglioriSudoku == true){ 
       //TODO creare funzione per gestirlo
     }
   case 'm' : //Fase manuale di training; Comandi per imparare da un giocatore
@@ -95,6 +95,6 @@ void keyPressed() {
 }
 
 //-------------- Mostra Dati -------
-void mostraDati() {
+void mostraDati(){
     //TODO
 }

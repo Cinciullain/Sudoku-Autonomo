@@ -9,7 +9,7 @@ class ReteNeurale {
   Matrice weightsNascostiOutput; //Matrice contenente i weights tra il secondo strato di neuroni nascosti e i neuroni in output 
   
 //-------------- Costruttore -------
-  ReteNeurale(int neuroniI, int neuroniN, int neuroniO) {
+  ReteNeurale(int neuroniI, int neuroniN, int neuroniO){
 
     //Imposta le dimensioni dai parametri
     neuroniInput = neuroniI;
@@ -32,7 +32,7 @@ class ReteNeurale {
   }
   
 //-------------- Funzione della mutazione per l'algoritmo genetico ------- 
-  void muta(float rateoMutazione) {
+  void muta(float rateoMutazione){
     //Muta le matrici contenenti i weights col rateo mutazione
     weightsInputNascosti.muta(rateoMutazione);
     weightsNascostiNascosti.muta(rateoMutazione);
@@ -40,7 +40,7 @@ class ReteNeurale {
   }
   
 //-------- Calcola i valori di output ----
-  float[] outputReteNeurale(float[] arrayInput) {
+  float[] outputReteNeurale(float[] arrayInput){
     //Converte l'array in matrice
     Matrice primoLayer = weightsNascostiOutput.matriceSingolaColonnaDaArray(arrayInput);
     //Aggiunge bias 
@@ -67,7 +67,7 @@ class ReteNeurale {
   }
 
 //-------------- Funzione di crossover dell'algoritmo genetico -------
-  ReteNeurale crossover(ReteNeurale partner) {
+  ReteNeurale crossover(ReteNeurale partner){
     //Crea una nuova rete neurale fondendo le due reti neurali 
     ReteNeurale reteNeuraleFiglio = new ReteNeurale(neuroniInput, neuroniNascosti, neuroniOutput);
     reteNeuraleFiglio.weightsInputNascosti = weightsInputNascosti.crossover(partner.weightsInputNascosti);
@@ -77,7 +77,7 @@ class ReteNeurale {
   }
   
 //-------------- Restituisce il clone della rete neurale -------
-  ReteNeurale clonaRN() {
+  ReteNeurale clonaRN(){
     ReteNeurale clone = new ReteNeurale(neuroniInput, neuroniNascosti, neuroniOutput); 
     clone.weightsInputNascosti = weightsInputNascosti.clonaMatrice();
     clone.weightsNascostiNascosti = weightsNascostiNascosti.clonaMatrice();
@@ -86,7 +86,7 @@ class ReteNeurale {
   }  
   
 //-------------- Converte le Matrici contenenti i wheights in una tabella; Utilizzata per salvare le reti neurali del sudoku in un file csv -------    
-  Table reteNeuraleInTabella() {
+  Table reteNeuraleInTabella(){
     
     Table tabella = new Table(); //Crea la tabella
     
@@ -96,25 +96,25 @@ class ReteNeurale {
     float[] arrayWeightsNascostiOutput = weightsNascostiOutput.arrayDaMatrice();
 
     //Imposta la quantità di colonne nella tabella
-    for (int i = 0; i < max(arrayWeightsInputNascosti.length, arrayWeightsNascostiNascosti.length, arrayWeightsNascostiOutput.length); i++) {
+    for (int i = 0; i < max(arrayWeightsInputNascosti.length, arrayWeightsNascostiNascosti.length, arrayWeightsNascostiOutput.length); i++){
       tabella.addColumn();
     }
     
     //Imposta la prima riga come weightsInputNascosti
     TableRow rigaTabella = tabella.addRow(); //Contenitore i dati che vengono salvati nelle righe create per la tabella
-    for (int i = 0; i < arrayWeightsInputNascosti.length; i++) {
+    for (int i = 0; i < arrayWeightsInputNascosti.length; i++){
       rigaTabella.setFloat(i, arrayWeightsInputNascosti[i]);
     }
 
     //Imposta la seconda riga come weightsNascostiNascosti
     rigaTabella = tabella.addRow(); //Aggiunge una nuova riga
-    for (int i = 0; i< arrayWeightsNascostiNascosti.length; i++) {
+    for (int i = 0; i< arrayWeightsNascostiNascosti.length; i++){
       rigaTabella.setFloat(i, arrayWeightsNascostiNascosti[i]);
     }
 
     //Imposta la terza riga come weightsNascostiOutput
     rigaTabella = tabella.addRow(); //Aggiunge una nuova riga
-    for (int i = 0; i< arrayWeightsNascostiOutput.length; i++) {
+    for (int i = 0; i< arrayWeightsNascostiOutput.length; i++){
       rigaTabella.setFloat(i, arrayWeightsNascostiOutput[i]);
     }
 
@@ -123,7 +123,7 @@ class ReteNeurale {
   }
   
 //-------------- Prende il file csv e lo trasforma in rete neurale -------
-  void reteNeuraleDaTabella(Table tabella) {
+  void reteNeuraleDaTabella(Table tabella){
     //Array temporanei per salvare i dati di ogni matrice
     float[] arrayWeightsInputNascosti = new float[weightsInputNascosti.righe * weightsInputNascosti.colonne];
     float[] arrayWeightsNascostiNascosti = new float[weightsNascostiNascosti.righe * weightsNascostiNascosti.colonne];
@@ -131,19 +131,19 @@ class ReteNeurale {
 
     //Imposta l'array weightsInputNascosti come prima riga della tabella
     TableRow rigaTabella = tabella.getRow(0);
-    for (int i = 0; i< arrayWeightsInputNascosti.length; i++) {
+    for (int i = 0; i< arrayWeightsInputNascosti.length; i++){
       arrayWeightsInputNascosti[i] = rigaTabella.getFloat(i);
     }
 
     //Imposta l'array weightsNascostiNascosti come seconda riga della tabella
     rigaTabella = tabella.getRow(1);
-    for (int i = 0; i< arrayWeightsNascostiNascosti.length; i++) {
+    for (int i = 0; i< arrayWeightsNascostiNascosti.length; i++){
       arrayWeightsNascostiNascosti[i] = rigaTabella.getFloat(i);
     }
 
     //Imposta l'array who come tera riga della tabella
     rigaTabella = tabella.getRow(2);
-    for (int i = 0; i< arrayWeightsNascostiOutput.length; i++) {
+    for (int i = 0; i< arrayWeightsNascostiOutput.length; i++){
       arrayWeightsNascostiOutput[i] = rigaTabella.getFloat(i);
     }
 
