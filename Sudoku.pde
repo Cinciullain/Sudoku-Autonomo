@@ -4,6 +4,8 @@ class Sudoku {
    ReteNeurale reteNeurale; //RN del sudoku
    //
    
+   //int numeroDaInserire; //Numero da inserire in tabella
+   //int caselleGiusteIniziali; //Variabile da valutare se inserirla qui 
    int durataSudoku = 0; //Quanto dura la partita
    int mosseRestanti; //Mosse che può ancora effettuare, se = 0 interrompe
    int contatorePunti = 0; //Conta i punti in base alle regole del sudoku
