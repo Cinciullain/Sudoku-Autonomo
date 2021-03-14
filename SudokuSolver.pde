@@ -78,10 +78,12 @@ void keyPressed(){
     //TODO creare funzione per gestirlo
     break;
   case 'd': //Dimezza il rateo di mutazione
-    rateoMutazione /=2;
+    if(rateoMutazione > 0.0025)
+       rateoMutazione /=2;
     break;
-  case 'r'://Raddoppia il rateo di mutazione
-    rateoMutazione *= 2;
+  case 'r': //Raddoppia il rateo di mutazione
+    if(rateoMutazione < 1)
+       rateoMutazione *= 2;
     break;
   case 'l': //Allena le 5 reti neurali migliori
     trainingMiglioriSudoku = !trainingMiglioriSudoku;
@@ -97,4 +99,22 @@ void keyPressed(){
 //-------------- Mostra Dati -------
 void mostraDati(){
     //TODO
+    line(400, 0, 400, 400); //Linea al centro della schermata per dividere a metà, a sinistra i dati (e opzioni?), a destra il sudoku in esecuzione
+    stroke(255, 50, 50); //Per evidenziare la linea
+    //fill(255); //Il primo testo risulterà bianco, come se fosse un titolo
+    fill(#3DB274); //Cambia colore del testo in verde
+    textSize(30); //Grandezza del test (Da valutare più avanti durante la scrittura del codice)
+    
+    text("Velocità: " + frameRate, 25, 100);
+    text("Rateo mutazione: " + rateoMutazione, 25, 150);
+    
+    /*Fase training/evolutiva delle 5 rn migliori
+    if(trainingMiglioriSudoku){
+       text("Training Sudoku migliori", 10, 50);
+       //fill(#3DB274); //Cambia colore del testo in verde
+       
+       
+    }*/
+    
+    
 }
